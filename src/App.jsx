@@ -113,9 +113,10 @@ export default function App() {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="text-xl font-black tracking-tighter text-blue-600 underline decoration-4 underline-offset-4">FULLSTACK PORTFOLIO</span>
+          <span className="text-xl font-black tracking-tighter text-blue-600 decoration-4 underline-offset-4">VINAYASHREE TUKARAM PATANAKAR</span>
           <div className="hidden md:flex gap-8 text-sm font-medium text-slate-600">
-            <a href="#aboutMe" className="hover:text-blue-600 transition-colors">About</a>
+            <a href="#home" className="hover:text-blue-600 transition-colors">Home</a>
+            <a href="#aboutMe" className="hover:text-blue-600 transition-colors">About Me</a>
             <a href="#projects" className="hover:text-blue-600 transition-colors">Projects</a>
             <a href="#resume" className="hover:text-blue-600 transition-colors">Resume</a>
             <a href="#skills" className="hover:text-blue-600 transition-colors">Skills</a>
@@ -125,13 +126,25 @@ export default function App() {
       </nav>
 
       {/* Hero Section */}
-    <section id="aboutMe">
+    <section id="home">
       <header className="max-w-6xl mx-auto px-6 py-24 md:py-32">
         <div className="max-w-3xl">
           <p className="text-blue-600 font-bold tracking-widest text-sm mb-4 uppercase">Available for roles in Sweden / Remote</p>
           <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight">
             Full Stack Developer building <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500">scalable systems.</span>
           </h1>
+          <div className="flex gap-4">
+            <a href="#projects" className="px-8 py-4 bg-slate-900 text-white rounded-xl font-semibold hover:bg-blue-600 transition-all shadow-lg shadow-blue-200">
+              Previous Projects
+            </a>
+          </div>
+        </div>
+      </header>
+
+      {/* About Me */}
+      <section id="aboutMe" className="max-w-6xl mx-auto px-6 py-24">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold text-slate-800 mb-4">About Me</h2>
           <p className="text-lg text-slate-600 mb-8 leading-relaxed">
             Hi, I’m Vinayashree I’m a Full Stack Developer with 5+ years of experience building scalable, secure, and high-performance web applications.
             I specialize in React, Node.js, and TypeScript, with strong experience in cloud platforms (Azure, GCP) and modern DevOps practices. I enjoy creating intuitive user interfaces while ensuring robust backend systems.
@@ -139,15 +152,15 @@ export default function App() {
             I’m passionate about building impactful digital products that support innovation, sustainability, and real-world problem solving.
           </p>
           <div className="flex gap-4">
-            <a href="#projects" className="px-8 py-4 bg-slate-900 text-white rounded-xl font-semibold hover:bg-blue-600 transition-all shadow-lg shadow-blue-200">
-              View Projects
+            <a href="#contact" className="px-8 py-4 bg-slate-900 text-white rounded-xl font-semibold hover:bg-blue-600 transition-all shadow-lg shadow-blue-200">
+              Hire Me
             </a>
-            <a href="#contact" className="px-8 py-4 border border-slate-200 rounded-xl font-semibold hover:bg-slate-50 transition-all">
-              Get in Touch
+            <a href="#resume" className="px-8 py-4 border border-slate-200 rounded-xl font-semibold hover:bg-slate-50 transition-all">
+              Resume
             </a>
           </div>
         </div>
-      </header>
+      </section>
 
       {/* Skills Grid */}
       <section id="skills" className="max-w-6xl mx-auto px-6 py-24">
@@ -201,7 +214,7 @@ export default function App() {
       {/* Projects Grid */}
       <section id="projects" className="bg-slate-50 py-24">
         <div className="max-w-6xl mx-auto px-6">
-          <SectionHeading>Hands-on Projects</SectionHeading>
+          <SectionHeading>Projects</SectionHeading>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ProjectCard
               title="Expense Tracker App"
@@ -213,12 +226,12 @@ export default function App() {
               live="#"       
             />
             <ProjectCard 
-              title="Weather App"
-              backgroundImage={weatherReportBg} // Pass the image here
-              desc="A data visualization platform for monitoring server health and application latency across global regions."
-              tech={['TypeScript', 'Next.js', 'D3.js', 'Redis']}
-              github="#"
-              live="#"
+              title="Weather Dashboard Pro"
+              backgroundImage={weatherReportBg} 
+              desc="Weather Dashboard Pro is a modern, responsive web application that provides real-time weather updates, interactive maps, and personalized city tracking. Built with a focus on usability and performance, the app delivers an intuitive experience for users to explore weather conditions across multiple locations."
+              tech={['JavaScript', 'Leaflet.js', 'OpenWeather API', 'CSS3']}
+              github="https://github.com/VinayashreePatanakar/Real-time-weather-website"
+              live="https://vinayashreepatanakar.github.io/Real-time-weather-website/" // Usually GitHub Pages URL
             />
           </div>
         </div>
@@ -226,17 +239,17 @@ export default function App() {
 
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-white">
-  <div className="max-w-6xl mx-auto px-6">
-    {/* Section Header */}
-    <div className="text-center mb-16">
-      <h2 className="text-4xl font-black text-slate-900 mb-4">Get In Touch</h2>
-      <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-        I'm currently open to new opportunities in the Swedish tech ecosystem. 
-        Whether you have a question or just want to say hi, I'll try my best to get back to you!
-      </p>
-    </div>
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-black text-slate-900 mb-4">Get In Touch</h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            I'm currently open to new opportunities in the Swedish tech ecosystem. 
+            Whether you have a question or just want to say hi, I'll try my best to get back to you!
+          </p>
+        </div>
 
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
       
       {/* Left Column: Contact Form (Spans 2 columns on large screens) */}
       <div className="lg:col-span-2 bg-slate-50 p-8 rounded-2xl border border-slate-100">
