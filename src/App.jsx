@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import expenseTrackerBg from './assets/images/backgrounds/Expense_Tracker.jpg';
 import weatherReportBg from './assets/images/backgrounds/Weather_Report.jpg';
+import profilePhoto from './assets/images/profile/ProfilePhoto.jpg';
+import resumeImage from './assets/images/profile/Resume.png';
+import resumePDF from './assets/documents/Vinayashree_Resume.pdf';
 import {
   Check, 
   Monitor, 
@@ -14,13 +17,13 @@ import {
   Layers,
   Cpu,
   Globe,
+  X,
 } from 'lucide-react';
 
 // --- Reusable Components ---
 
 const SectionHeading = ({ children }) => (
-  <h2 className="text-3xl font-bold text-slate-800 mb-8 flex items-center gap-3">
-    <span className="w-8 h-1 bg-blue-600 rounded-full"></span>
+  <h2 className="text-3xl font-bold text-center text-slate-800 mb-8">
     {children}
   </h2>
 );
@@ -40,7 +43,7 @@ const ProjectCard = ({ title, desc, tech, live, github, backgroundImage }) => (
   >
     {/* Gradient Overlay for Readability (Only shows if image exists) */}
     {backgroundImage && (
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent z-0" />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/100 to-transparent z-6" />
     )}
 
     {/* Content Container (z-10 to stay above the image/overlay) */}
@@ -50,7 +53,7 @@ const ProjectCard = ({ title, desc, tech, live, github, backgroundImage }) => (
           <Code2 size={24} />
         </div>
         <div className={`flex gap-3 ${backgroundImage ? 'text-white/70' : 'text-slate-400'}`}>
-          <a href={github} target="_blank" rel="noreferrer" className="hover:text-blue-400 transition-colors">
+          <a href={github} target="_blank" rel="noreferrer" className="hover:text-blue-400 transition-colors">a
             <GitBranch size={20} />
           </a>
           <a href={live} target="_blank" rel="noreferrer" className="hover:text-blue-400 transition-colors">
@@ -107,6 +110,7 @@ const SkillCard = ({ icon: Icon, title, skills }) => (
 
 // --- Main Application ---
 export default function App() {
+
   return (
     <div className="min-h-screen bg-[#FAFAFA] font-sans text-slate-900">
       
@@ -127,16 +131,29 @@ export default function App() {
 
       {/* Hero Section */}
     <section id="home">
-      <header className="max-w-6xl mx-auto px-6 py-24 md:py-32">
-        <div className="max-w-3xl">
-          <p className="text-blue-600 font-bold tracking-widest text-sm mb-4 uppercase">Available for roles in Sweden / Remote</p>
-          <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight">
-            Full Stack Developer building <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500">scalable systems.</span>
-          </h1>
-          <div className="flex gap-4">
-            <a href="#projects" className="px-8 py-4 bg-slate-900 text-white rounded-xl font-semibold hover:bg-blue-600 transition-all shadow-lg shadow-blue-200">
-              Previous Projects
-            </a>
+      <header className="max-w-6xl mx-auto px-6 py-24">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 items-center">
+          {/* Left Column - Text (60%) */}
+          <div className="md:col-span-3">
+            <p className="text-blue-600 font-bold tracking-widest text-sm mb-4 uppercase">Available for roles in Sweden / Remote</p>
+            <p className="text-lg md:text-2xl text-slate-500 font-bold mb-2">Hello, I'm VINAYASHREE TUKARAM PATANAKAR</p>
+            <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight">
+              Full Stack Developer building <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500">scalable systems.</span>
+            </h1>
+            <div className="flex gap-4">
+              <a href="#projects" className="px-8 py-4 bg-slate-900 text-white rounded-xl font-semibold hover:bg-blue-600 transition-all shadow-lg shadow-blue-200">
+                Previous Projects
+              </a>
+            </div>
+          </div>
+          
+          {/* Right Column - Image (40%) */}
+          <div className="md:col-span-2 flex justify-center md:justify-end">
+            <img 
+              src={profilePhoto} 
+              alt="Profile Photo" 
+              className="w-full rounded-2xl shadow-2xl object-cover"
+            />
           </div>
         </div>
       </header>
@@ -146,12 +163,12 @@ export default function App() {
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-slate-800 mb-4">About Me</h2>
           <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-            Hi, I’m Vinayashree I’m a Full Stack Developer with 5+ years of experience building scalable, secure, and high-performance web applications.
+            Hi, I am a Full Stack Developer with 5+ years of experience building scalable, secure, and high-performance web applications.
             I specialize in React, Node.js, and TypeScript, with strong experience in cloud platforms (Azure, GCP) and modern DevOps practices. I enjoy creating intuitive user interfaces while ensuring robust backend systems.
             Recently, I worked on an interactive site-map tool, energy analytics dashboards, and automation solutions that improved efficiency and reduced manual effort.
             I’m passionate about building impactful digital products that support innovation, sustainability, and real-world problem solving.
           </p>
-          <div className="flex gap-4">
+          <div className="flex gap-4 justify-center">
             <a href="#contact" className="px-8 py-4 bg-slate-900 text-white rounded-xl font-semibold hover:bg-blue-600 transition-all shadow-lg shadow-blue-200">
               Hire Me
             </a>
@@ -231,7 +248,66 @@ export default function App() {
               desc="Weather Dashboard Pro is a modern, responsive web application that provides real-time weather updates, interactive maps, and personalized city tracking. Built with a focus on usability and performance, the app delivers an intuitive experience for users to explore weather conditions across multiple locations."
               tech={['JavaScript', 'Leaflet.js', 'OpenWeather API', 'CSS3']}
               github="https://github.com/VinayashreePatanakar/Real-time-weather-website"
-              live="https://vinayashreepatanakar.github.io/Real-time-weather-website/" // Usually GitHub Pages URL
+              live="#" // Usually GitHub Pages URL
+            />
+            <ProjectCard
+              title="Gateway Placement Tool"
+              backgroundImage={expenseTrackerBg} // Pass the image here
+              desc="The Gateway Placement Tool is an interactive, web-based site map feature integrated into the Signal page. It replaces the previous manual workflow with a collaborative, versioned, and persistent system that allows both DAZOQ and customers to place, edit, and track sensors, gateways, and 
+              repeaters directly on a scaled floor map."
+              tech={['React', 'Node.js', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'JWT', 'Tailwind CSS', 'Axios / Fetch API', 'Git & GitHub']}
+              github="https://github.com/VinayashreePatanakar/gateway-placement-tool"
+              live="#"       
+            />
+            <ProjectCard
+              title="Allabolag Scraper"
+              backgroundImage={expenseTrackerBg} // Pass the image here
+              desc="The Allabolag Company Scraper is a Python-based web scraping tool designed to collect company information from Allabolag.se, 
+              enrich it with Swedish region data based on city names, and export the results to an Excel file with clickable hyperlinks."
+              tech={['Python', 'Excel']}
+              github="https://github.com/VinayashreePatanakar/allabolag_scraper"
+              live="#"       
+            />
+            <ProjectCard
+              title="Monthly Report Generator"
+              backgroundImage={expenseTrackerBg} // Pass the image here
+              desc="The Monthly Energy Report project generates an executive-level monthly energy analysis report using raw JSON energy measurement data. 
+              The system processes and analyzes energy consumption to identify trends, peak demand periods, machine utilization, and month-over-month performance changes."
+              tech={['PHP', 'JSON', 'JavaScript', 'Highcharts', 'HTML', 'CSS']}
+              github="https://github.com/VinayashreePatanakar/Monthly_Reports"
+              live="#"       
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Resume Section */}
+      <section id="resume" className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-7 gap-12 items-start mb-12">
+            {/* Left Column - Resume Text (60%) */}
+            <div className="md:col-span-5">
+              <h2 className="text-4xl font-bold text-slate-900 mb-4">Resume</h2>
+            </div>
+
+            {/* Right Column - Download Button (40%) */}
+            <div className="md:col-span-2 flex items-center justify-center md:justify-end">
+              <a
+                href={resumePDF}
+                download="Vinayashree_Resume.pdf"
+                className="inline-flex items-center px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 whitespace-nowrap"
+              >
+                Download PDF Version
+              </a>
+            </div>
+          </div>
+
+          {/* Resume Image */}
+          <div className="flex justify-center">
+            <img
+              src={resumeImage}
+              alt="Resume"
+              className="max-w-2xl w-full rounded-2xl shadow-2xl border border-slate-100"
             />
           </div>
         </div>
@@ -242,7 +318,7 @@ export default function App() {
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-black text-slate-900 mb-4">Get In Touch</h2>
+          <h2 className="text-4xl font-black text-slate-900 mb-4">Hire Me</h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             I'm currently open to new opportunities in the Swedish tech ecosystem. 
             Whether you have a question or just want to say hi, I'll try my best to get back to you!
@@ -250,7 +326,6 @@ export default function App() {
         </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-      
       {/* Left Column: Contact Form (Spans 2 columns on large screens) */}
       <div className="lg:col-span-2 bg-slate-50 p-8 rounded-2xl border border-slate-100">
         <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
