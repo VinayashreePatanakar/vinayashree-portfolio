@@ -328,7 +328,13 @@ export default function App() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
       {/* Left Column: Contact Form (Spans 2 columns on large screens) */}
       <div className="lg:col-span-2 bg-slate-50 p-8 rounded-2xl border border-slate-100">
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          const name = e.target[0].value;
+          const email = e.target[1].value;
+          const message = e.target[2].value;
+          window.location.href = `mailto:vinayapatanakar@gmail.com?subject=Portfolio%20Contact%20from%20${name}&body=${message}%0D%0AFrom:%20${email}`;
+        }} className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-bold text-slate-700 mb-2">Name</label>
             <input 
@@ -354,7 +360,7 @@ export default function App() {
             ></textarea>
           </div>
           <div className="md:col-span-2">
-            <button className="w-full md:w-auto px-10 py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">
+            <button type="submit" className="w-full md:w-auto px-10 py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">
               Send Message
             </button>
           </div>
