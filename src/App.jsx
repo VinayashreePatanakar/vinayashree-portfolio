@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import expenseTrackerBg from './assets/images/backgrounds/Expense_Tracker.jpg';
 import weatherReportBg from './assets/images/backgrounds/Weather_Report.jpg';
 import profilePhoto from './assets/images/profile/ProfilePhoto.jpg';
+import gatewayPlacementBg from './assets/images/backgrounds/Gateway_Placement.jpg';
+import monthlyReportBg from './assets/images/backgrounds/Monthly_Report.jpg';
+import allabolagScraperBg from './assets/images/backgrounds/Scraper.jpg';
 import resumeImage from './assets/images/profile/Resume.png';
 import resumePDF from './assets/documents/Vinayashree_Resume.pdf';
 import { Sun } from 'lucide-react';
@@ -118,10 +121,36 @@ export default function App() {
 
 const [darkMode, setDarkMode] = useState(false);
 const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+const [activeSection, setActiveSection] = useState('home');
 
 useEffect(() => {
   document.documentElement.classList.toggle('dark', darkMode);
 }, [darkMode]);
+
+useEffect(() => {
+  const sections = ['home', 'aboutMe', 'projects', 'resume', 'skills', 'contact'];
+  
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visibleEntries = entries.filter((entry) => entry.isIntersecting);
+      if (visibleEntries.length > 0) {
+        // Find the topmost visible section
+        const topmost = visibleEntries.reduce((top, entry) => {
+          return entry.boundingClientRect.top < top.boundingClientRect.top ? entry : top;
+        });
+        setActiveSection(topmost.target.id);
+      }
+    },
+    { threshold: 0.1 }
+  );
+
+  sections.forEach((id) => {
+    const element = document.getElementById(id);
+    if (element) observer.observe(element);
+  });
+
+  return () => observer.disconnect();
+}, []);
 
 const handleFormChange = (e) => {
   const { name, value } = e.target;
@@ -158,12 +187,12 @@ const fadeUp = {
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <span className="text-l font-black tracking-tighter text-blue-500 underline-offset-4">VINAYASHREE TUKARAM PATANAKAR</span>
           <div className="hidden md:flex gap-8 text-sm font-medium text-slate-600 dark:text-slate-400">
-            <a href="#home" className="hover:text-blue-600 transition-colors">Home</a>
-            <a href="#aboutMe" className="hover:text-blue-600 transition-colors">About Me</a>
-            <a href="#projects" className="hover:text-blue-600 transition-colors">Projects</a>
-            <a href="#resume" className="hover:text-blue-600 transition-colors">Resume</a>
-            <a href="#skills" className="hover:text-blue-600 transition-colors">Skills</a>
-            <a href="#contact" className="hover:text-blue-600 transition-colors">Contact</a>
+            <a href="#home" className={`transition-colors ${activeSection === 'home' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'hover:text-blue-600'}`}>Home</a>
+            <a href="#aboutMe" className={`transition-colors ${activeSection === 'aboutMe' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'hover:text-blue-600'}`}>About Me</a>
+            <a href="#skills" className={`transition-colors ${activeSection === 'skills' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'hover:text-blue-600'}`}>Skills</a>
+            <a href="#projects" className={`transition-colors ${activeSection === 'projects' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'hover:text-blue-600'}`}>Projects</a>
+            <a href="#resume" className={`transition-colors ${activeSection === 'resume' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'hover:text-blue-600'}`}>Resume</a>
+            <a href="#contact" className={`transition-colors ${activeSection === 'contact' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'hover:text-blue-600'}`}>Contact</a>
           </div>
         </div>
       </nav>
@@ -298,13 +327,13 @@ const fadeUp = {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
               >
-            <ProjectCard 
+            <ProjectCard
               title="Weather Dashboard Pro"
               backgroundImage={weatherReportBg} 
               desc="Weather Dashboard Pro is a modern, responsive web application that provides real-time weather updates, interactive maps, and personalized city tracking. Built with a focus on usability and performance, the app delivers an intuitive experience for users to explore weather conditions across multiple locations."
               tech={['JavaScript', 'Leaflet.js', 'OpenWeather API', 'CSS3']}
               github="https://github.com/VinayashreePatanakar/Real-time-weather-website"
-              live="#" // Usually GitHub Pages URL
+              /*live="#" */// Usually GitHub Pages URL
             />
             </motion.div>
             <motion.div
@@ -313,12 +342,12 @@ const fadeUp = {
               >
             <ProjectCard
               title="Gateway Placement Tool"
-              backgroundImage={expenseTrackerBg} // Pass the image here
+              backgroundImage={gatewayPlacementBg} // Pass the image here
               desc="The Gateway Placement Tool is an interactive, web-based site map feature integrated into the Signal page. It replaces the previous manual workflow with a collaborative, versioned, and persistent system that allows both DAZOQ and customers to place, edit, and track sensors, gateways, and 
               repeaters directly on a scaled floor map."
               tech={['React', 'Node.js', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'JWT', 'Tailwind CSS', 'Axios / Fetch API', 'Git & GitHub']}
               github="https://github.com/VinayashreePatanakar/gateway-placement-tool"
-              live="#"       
+              /*live="#" */// Usually GitHub Pages URL
             />
             </motion.div>
             <motion.div
@@ -327,12 +356,12 @@ const fadeUp = {
               >
             <ProjectCard
               title="Monthly Report Generator"
-              backgroundImage={expenseTrackerBg} // Pass the image here
+              backgroundImage={monthlyReportBg} // Pass the image here
               desc="The Monthly Executive Energy Report is a data-driven analytics system designed to transform raw energy consumption data into actionable executive insights. The application processes structured JSON datasets to generate a comprehensive, multi-page report that highlights energy trends, peak demand periods,
                and machine-level performance."
               tech={['PHP', 'JSON', 'JavaScript', 'Highcharts', 'HTML', 'CSS']}
               github="https://github.com/VinayashreePatanakar/Monthly_Reports"
-              live="#"       
+              /*live="#" */// Usually GitHub Pages URL
             />
             </motion.div>
             <motion.div
@@ -341,12 +370,12 @@ const fadeUp = {
               >
             <ProjectCard
               title="Allabolag Scraper"
-              backgroundImage={expenseTrackerBg} // Pass the image here
+              backgroundImage={allabolagScraperBg} // Pass the image here
               desc="The Allabolag Company Scraper is a Python-based web scraping tool designed to collect company information from Allabolag.se, 
               enrich it with Swedish region data based on city names, and export the results to an Excel file with clickable hyperlinks."
               tech={['Python', 'Excel']}
               github="https://github.com/VinayashreePatanakar/allabolag_scraper"
-              live="#"       
+              /*live="#" */// Usually GitHub Pages URL
             />
             </motion.div>
         
