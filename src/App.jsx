@@ -163,6 +163,11 @@ const handleFormSubmit = (e) => {
   setFormData({ name: '', email: '', message: '' });
 };
 
+const navLinkClass = (section) =>
+  `transition-colors duration-200 ease-in-out cursor-pointer text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 ${
+    activeSection === section ? 'text-blue-600 dark:text-blue-400 font-bold' : ''
+  }`;
+
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
@@ -186,13 +191,13 @@ const fadeUp = {
       <nav className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-700">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <span className="text-l font-black tracking-tighter text-blue-500 underline-offset-4">VINAYASHREE TUKARAM PATANAKAR</span>
-          <div className="hidden md:flex gap-8 text-sm font-medium text-slate-600 dark:text-slate-400">
-            <a href="#home" className={`transition-colors ${activeSection === 'home' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'hover:text-blue-600'}`}>Home</a>
-            <a href="#aboutMe" className={`transition-colors ${activeSection === 'aboutMe' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'hover:text-blue-600'}`}>About Me</a>
-            <a href="#skills" className={`transition-colors ${activeSection === 'skills' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'hover:text-blue-600'}`}>Skills</a>
-            <a href="#projects" className={`transition-colors ${activeSection === 'projects' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'hover:text-blue-600'}`}>Projects</a>
-            <a href="#resume" className={`transition-colors ${activeSection === 'resume' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'hover:text-blue-600'}`}>Resume</a>
-            <a href="#contact" className={`transition-colors ${activeSection === 'contact' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'hover:text-blue-600'}`}>Contact</a>
+          <div className="hidden md:flex gap-8 text-sm font-medium">
+            <a href="#home" className={navLinkClass('home')}>Home</a>
+            <a href="#aboutMe" className={navLinkClass('aboutMe')}>About Me</a>
+            <a href="#skills" className={navLinkClass('skills')}>Skills</a>
+            <a href="#projects" className={navLinkClass('projects')}>Projects</a>
+            <a href="#resume" className={navLinkClass('resume')}>Resume</a>
+            <a href="#contact" className={navLinkClass('contact')}>Contact</a>
           </div>
         </div>
       </nav>
